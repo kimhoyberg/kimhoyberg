@@ -10,12 +10,17 @@
 
   /* Unique Tuna-Timer styles only */
   img#hero{max-width:420px;width:90%;height:auto;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+  
   h1{margin:0.6rem 0 0.5rem;font-size:1.9rem}
-  #timeDisplay{font-size:4rem;font-weight:700;margin:1rem 0}
+  #timeDisplay{font-size:3rem;font-weight:600;margin:1rem 0}
   .controls{display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center}
+  
   button,input[type="number"]{font-size:1.25rem;padding:0.4rem 0.8rem;border:2px solid var(--fg);border-radius:6px;background:#fff;cursor:pointer}
+  
   button:hover{background:var(--accent)}
-  label{font-size:1.1rem;margin-top:0.5rem;display:flex;align-items:center;gap:0.4rem;justify-content:center}
+  
+  label{font-size:0.9rem;margin-top:0.5rem;display:flex;align-items:center;gap:0.4rem;}
+  .left-align{justify-content:flex-start; text-align:left;}
   #status{margin-top:0.5rem;font-size:0.95rem;min-height:1.2rem}
   #awakeStatus{font-size:0.85rem;color:#666;margin-top:0.3rem;min-height:1em}
 </style>
@@ -25,7 +30,7 @@
   <img id="hero" src="tuna.jpg" alt="Jumping tuna" />
   <h1>Tuna-Timer 🐟⏰</h1>
   <label>
-    Minutes per turn:
+    Minutes per turns:
     <input id="minutesInput" type="number" min="1" value="10" />
   </label>
   <div id="timeDisplay">10 : 00</div>
@@ -34,7 +39,7 @@
     <button id="resetBtn">⏹️ Reset</button>
     <button id="testSoundBtn">🔊 Test Sound</button>
   </div>
-  <label>
+  <label class="left-align">
     <input id="keepAwakeToggle" type="checkbox">
     Keep screen awake
   </label>

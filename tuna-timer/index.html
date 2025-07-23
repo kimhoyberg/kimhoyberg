@@ -9,15 +9,6 @@
   :root { --accent: #ececec; } /* Local accent for button hover */
 
   /* Unique Tuna-Timer styles only */
-  body {
-    display: flex; /* Ensure flex layout from shared.css is preserved */
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    text-align: center;
-    /* Font is inherited from shared.css */
-  }
   img#hero{max-width:420px;width:90%;height:auto;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
   h1{margin:0.6rem 0 0.5rem;font-size:1.9rem}
   #timeDisplay{font-size:4rem;font-weight:700;margin:1rem 0}
@@ -30,31 +21,26 @@
 </style>
 </head>
 <body>
-
-<img id="hero" src="tuna.jpg" alt="Jumping tuna" />
-<h1>Tuna-Timer 🐟⏰</h1>
-
-<label>
-  Minutes per turn:
-  <input id="minutesInput" type="number" min="1" value="10" />
-</label>
-
-<div id="timeDisplay">10 : 00</div>
-
-<div class="controls">
-  <button id="startPauseBtn">▶️ Start</button>
-  <button id="resetBtn">⏹️ Reset</button>
-  <button id="testSoundBtn">🔊 Test Sound</button>
-</div>
-
-<label>
-  <input id="keepAwakeToggle" type="checkbox">
-  Keep screen awake
-</label>
-<div id="awakeStatus"></div>
-
-<div id="status"></div>
-
+<main>
+  <img id="hero" src="tuna.jpg" alt="Jumping tuna" />
+  <h1>Tuna-Timer 🐟⏰</h1>
+  <label>
+    Minutes per turn:
+    <input id="minutesInput" type="number" min="1" value="10" />
+  </label>
+  <div id="timeDisplay">10 : 00</div>
+  <div class="controls">
+    <button id="startPauseBtn">▶️ Start</button>
+    <button id="resetBtn">⏹️ Reset</button>
+    <button id="testSoundBtn">🔊 Test Sound</button>
+  </div>
+  <label>
+    <input id="keepAwakeToggle" type="checkbox">
+    Keep screen awake
+  </label>
+  <div id="awakeStatus"></div>
+  <div id="status"></div>
+</main>
 <script>
 (() => {
   const minutesInput   = document.getElementById('minutesInput');

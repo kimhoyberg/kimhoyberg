@@ -2,13 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Tuna-Timer</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tuna-Timer</title>
+<link rel="stylesheet" href="../shared.css">
 <style>
-  :root{--fg:#333;--bg:#f5f7fa;--accent:#ececec}
-  body{font-family:sans-serif;background:var(--bg);color:var(--fg);
-       display:flex;flex-direction:column;align-items:center;justify-content:center;
-       min-height:100vh;margin:0;padding:1rem;box-sizing:border-box;text-align:center}
+  :root { --accent: #ececec; } /* Local accent for button hover */
+
+  /* Unique Tuna-Timer styles only */
+  body {
+    display: flex; /* Ensure flex layout from shared.css is preserved */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    /* Font is inherited from shared.css */
+  }
   img#hero{max-width:420px;width:90%;height:auto;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
   h1{margin:0.6rem 0 0.5rem;font-size:1.9rem}
   #timeDisplay{font-size:4rem;font-weight:700;margin:1rem 0}

@@ -1,0 +1,85 @@
+/* Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+  --fg:#1a1a1a;
+  --bg:#fafafa;
+  --accent:#0070f3;
+  --maxw:400px;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html,body{
+  margin: 0;
+  padding: 0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* Layout and Typography (from main index.html) */
+body{
+  height:100%;
+  display:flex;
+  align-items:flex-start;     /* top align vertically */
+  justify-content:center;     /* center horizontally */
+  padding:48px;
+}
+main{
+  max-width:var(--maxw);
+  width:100%;
+  text-align:left;
+}
+img.portrait{
+  width:90px;
+  height:90px;
+  border-radius:100px;
+  object-fit:cover;
+  margin-bottom:28px;
+  display:block;
+}
+h1{
+  font-size:1.8rem;
+  line-height:1.0;
+  margin:0 0 18px;
+  font-weight:500;
+}
+p{
+  font-size:0.9rem;
+  line-height:1.5;
+  margin:0 0 18px;
+  font-weight:500;
+}
+a{
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:600;
+}
+a:hover{text-decoration:underline;}
+
+/* Projects section */
+section#projects{
+  padding:24px 0 96px;
+}
+section#projects h2{
+  margin:0 0 18px;
+  font-size:1.3rem;
+  font-weight:500;
+  line-height:1.3;
+}
+ul.project-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+ul.project-list li{
+  margin-bottom:16px;
+  font-size:0.9rem;
+  line-height:1.5;
+}

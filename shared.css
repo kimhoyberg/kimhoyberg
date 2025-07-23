@@ -5,7 +5,7 @@
   --fg:#1a1a1a;
   --bg:#fafafa;
   --accent:#0070f3;
-  --maxw:400px;
+  --maxw:420px;
 }
 
 html {
@@ -37,8 +37,8 @@ main{
   text-align:left;
 }
 img.portrait{
-  width:90px;
-  height:90px;
+  width:80px;
+  height:80px;
   border-radius:100px;
   object-fit:cover;
   margin-bottom:28px;
@@ -81,6 +81,15 @@ ul.project-list{
 }
 ul.project-list li{
   margin-bottom:16px;
+}
+
+.site-footer {
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  color: #999999;
+  margin-top: 48px;
+  margin-bottom: 8px;
 }
 
 @media (max-width: 600px) {

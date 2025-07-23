@@ -50,7 +50,7 @@ h1{
   margin:0 0 18px;
   font-weight:500;
 }
-p, li {
+p, li, label {
   font-size:0.9rem;
   line-height:1.5;
   margin:0 0 18px;
@@ -91,5 +91,8 @@ ul.project-list li{
   }
   main {
     max-width: 100%;
+  }
+  .controls {
+    justify-content: flex-start !important;
   }
 }

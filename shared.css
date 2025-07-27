@@ -108,7 +108,7 @@ ul.project-list li{
   left: 0;
   right: 0;
   background: var(--bg);
-  padding: 1rem 0;
+  padding: 48px 48px 0 48px;
   z-index: 100;
   display: flex;
   align-items: flex-start;
@@ -118,7 +118,6 @@ ul.project-list li{
 .nav-container {
   max-width: var(--maxw);
   width: 100%;
-  padding: 0 48px;
   display: flex;
   align-items: center;
 }
@@ -136,7 +135,7 @@ ul.project-list li{
 
 /* Adjust body padding to account for fixed nav */
 body {
-  padding-top: 80px;
+  padding-top: 120px;
 }
 
 @media (max-width: 600px) {
@@ -151,10 +150,10 @@ body {
   .controls {
     justify-content: flex-start !important;
   }
-  .nav-container {
-    padding: 0 15px;
+  .nav-bar {
+    padding: 15px 15px 0 15px;
   }
   body {
-    padding-top: 70px;
+    padding-top: 80px;
   }
 }

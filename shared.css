@@ -108,14 +108,16 @@ ul.project-list li{
   left: 0;
   right: 0;
   background: var(--bg);
-  border-bottom: 1px solid #e0e0e0;
   padding: 1rem 0;
   z-index: 100;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .nav-container {
   max-width: var(--maxw);
-  margin: 0 auto;
+  width: 100%;
   padding: 0 48px;
   display: flex;
   align-items: center;

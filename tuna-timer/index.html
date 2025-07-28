@@ -80,6 +80,10 @@
   // --- LOUDER / HIGHER SOUND ---
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   function ding() {
+    // Resume AudioContext if suspended (Safari/iOS)
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
     const now = audioCtx.currentTime;
     const masterGain = audioCtx.createGain();
     masterGain.gain.setValueAtTime(0.35, now);
@@ -133,8 +137,10 @@
         ticking = false;
         ding();
         if (navigator.vibrate) navigator.vibrate([120,60,120]);
-        setTotalSeconds();
-        start(); // restart for looping, but only after clearing previous interval
+        setTimeout(() => {
+          setTotalSeconds();
+          start(); // restart for looping, but only after sound plays
+        }, 600); // wait for sound to finish
       }
     }, 250);
     ticking = true;

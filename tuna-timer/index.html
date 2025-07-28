@@ -126,24 +126,22 @@
         await ding();
         if (navigator.vibrate) navigator.vibrate([120,60,120]);
         setTotalSeconds();
-        await new Promise(res => setTimeout(res, 600)); // wait for beep
-        if (ticking === false) {
-          start(true); // restart for looping
-        }
+        // Always restart the timer loop after beep and reset
+        start();
         return;
       }
       await new Promise(res => setTimeout(res, 250));
     }
   }
 
-  function start(internal) {
-    if (ticking && !internal) return;
+  function start() {
+    // Always allow the timer to start (for looping)
     const now = Date.now();
     endTime = now + remaining * 1000;
     ticking = true;
     startPauseBtn.textContent = '⏸️ Pause';
     status.textContent = 'Running…';
-    if (!internal) timerLoopPromise = timerLoop();
+    timerLoop();
   }
 
   function pause() {

@@ -74,6 +74,8 @@
   let remaining = totalSecs;
   let ticking   = false;
   let intervalId= null;
+  let lastTick  = null;
+  let endTime   = null;
 
   // --- LOUDER / HIGHER SOUND ---
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -108,18 +110,31 @@
     remaining  = totalSecs;
     updateDisplay();
     status.textContent = '';
+    endTime = null;
+    lastTick = null;
   }
 
   function start() {
     if (ticking) return;
+    const now = Date.now();
+    if (!endTime) {
+      endTime = now + remaining * 1000;
+    } else {
+      // Adjust endTime if resuming after pause
+      endTime = now + remaining * 1000;
+    }
+    lastTick = now;
     intervalId = setInterval(() => {
-      if (--remaining < 0) {
+      const now = Date.now();
+      remaining = Math.max(0, Math.round((endTime - now) / 1000));
+      updateDisplay();
+      if (remaining <= 0) {
         ding();
         if (navigator.vibrate) navigator.vibrate([120,60,120]);
-        remaining = totalSecs;
+        setTotalSeconds();
+        start(); // restart for looping
       }
-      updateDisplay();
-    }, 1000);
+    }, 250);
     ticking = true;
     startPauseBtn.textContent = '⏸️ Pause';
     status.textContent = 'Running…';
@@ -128,6 +143,10 @@
   function pause() {
     clearInterval(intervalId);
     ticking = false;
+    // Adjust remaining based on real time
+    if (endTime) {
+      remaining = Math.max(0, Math.round((endTime - Date.now()) / 1000));
+    }
     startPauseBtn.textContent = '▶️ Start';
     status.textContent = 'Paused';
   }

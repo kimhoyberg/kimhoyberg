@@ -73,8 +73,7 @@
   let totalSecs = 600;
   let remaining = totalSecs;
   let ticking   = false;
-  let intervalId= null;
-  let lastTick  = null;
+  let timerTimeout = null;
   let endTime   = null;
 
   // --- LOUDER / HIGHER SOUND ---
@@ -115,43 +114,37 @@
     updateDisplay();
     status.textContent = '';
     endTime = null;
-    lastTick = null;
   }
 
-  async function start() {
+  async function tick() {
+    if (!ticking) return;
+    const now = Date.now();
+    remaining = Math.max(0, Math.round((endTime - now) / 1000));
+    updateDisplay();
+    if (remaining <= 0) {
+      ticking = false;
+      await ding();
+      if (navigator.vibrate) navigator.vibrate([120,60,120]);
+      setTotalSeconds();
+      start(); // restart for looping
+      return;
+    }
+    timerTimeout = setTimeout(tick, 250);
+  }
+
+  function start() {
     if (ticking) return;
     const now = Date.now();
-    if (!endTime) {
-      endTime = now + remaining * 1000;
-    } else {
-      // Adjust endTime if resuming after pause
-      endTime = now + remaining * 1000;
-    }
-    lastTick = now;
-    intervalId = setInterval(async () => {
-      const now = Date.now();
-      remaining = Math.max(0, Math.round((endTime - now) / 1000));
-      updateDisplay();
-      if (remaining <= 0) {
-        clearInterval(intervalId);
-        ticking = false;
-        await ding();
-        if (navigator.vibrate) navigator.vibrate([120,60,120]);
-        setTimeout(() => {
-          setTotalSeconds();
-          start(); // restart for looping, but only after sound plays
-        }, 600); // wait for sound to finish
-      }
-    }, 250);
+    endTime = now + remaining * 1000;
     ticking = true;
     startPauseBtn.textContent = '⏸️ Pause';
     status.textContent = 'Running…';
+    tick();
   }
 
   function pause() {
-    clearInterval(intervalId);
     ticking = false;
-    // Adjust remaining based on real time
+    clearTimeout(timerTimeout);
     if (endTime) {
       remaining = Math.max(0, Math.round((endTime - Date.now()) / 1000));
     }

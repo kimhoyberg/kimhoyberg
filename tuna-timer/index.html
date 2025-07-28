@@ -18,7 +18,7 @@
   margin-bottom: 1.5rem;
 }
   
-  h1{margin:0.6rem 0 0.5rem;font-size:1.9rem}
+  /* Remove h1 style to use only shared.css */
   #timeDisplay{font-size:3rem;font-weight:600;margin:1rem 0}
   .controls{display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:flex-start;margin-bottom:18px;}
   
@@ -60,128 +60,7 @@
   <div id="status"></div>
 </main>
 <script>
-(() => {
-  const minutesInput   = document.getElementById('minutesInput');
-  const timeDisplay    = document.getElementById('timeDisplay');
-  const startPauseBtn  = document.getElementById('startPauseBtn');
-  const resetBtn       = document.getElementById('resetBtn');
-  const status         = document.getElementById('status');
-  const testSoundBtn   = document.getElementById('testSoundBtn');
-  const keepAwakeToggle= document.getElementById('keepAwakeToggle');
-  const awakeStatus    = document.getElementById('awakeStatus');
-
-  let totalSecs = 600;
-  let remaining = totalSecs;
-  let ticking   = false;
-  let intervalId= null;
-
-  // --- LOUDER / HIGHER SOUND ---
-  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  function ding() {
-    const now = audioCtx.currentTime;
-    const masterGain = audioCtx.createGain();
-    masterGain.gain.setValueAtTime(0.35, now);
-    masterGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.8);
-
-    const freqs = [1046.5, 1318.5, 1568.0]; // C6, E6, G6
-    freqs.forEach(f => {
-      const osc = audioCtx.createOscillator();
-      osc.type = 'square';
-      osc.frequency.value = f;
-      osc.connect(masterGain);
-      osc.start(now);
-      osc.stop(now + 0.4);
-    });
-
-    masterGain.connect(audioCtx.destination);
-  }
-
-  function updateDisplay() {
-    const m = Math.floor(remaining/60).toString().padStart(2,'0');
-    const s = (remaining%60).toString().padStart(2,'0');
-    timeDisplay.textContent = `${m} : ${s}`;
-  }
-
-  function setTotalSeconds() {
-    const mVal = Math.max(1, parseInt(minutesInput.value, 10) || 10);
-    totalSecs  = mVal * 60;
-    remaining  = totalSecs;
-    updateDisplay();
-    status.textContent = '';
-  }
-
-  function start() {
-    if (ticking) return;
-    intervalId = setInterval(() => {
-      if (--remaining < 0) {
-        ding();
-        if (navigator.vibrate) navigator.vibrate([120,60,120]);
-        remaining = totalSecs;
-      }
-      updateDisplay();
-    }, 1000);
-    ticking = true;
-    startPauseBtn.textContent = '⏸️ Pause';
-    status.textContent = 'Running…';
-  }
-
-  function pause() {
-    clearInterval(intervalId);
-    ticking = false;
-    startPauseBtn.textContent = '▶️ Start';
-    status.textContent = 'Paused';
-  }
-
-  // --- Screen Wake Lock ---
-  let wakeLock = null;
-  async function requestWakeLock() {
-    try {
-      wakeLock = await navigator.wakeLock.request('screen');
-      awakeStatus.textContent = 'Screen will stay awake.';
-      wakeLock.addEventListener('release', () => {
-        awakeStatus.textContent = 'Wake lock released by system.';
-        keepAwakeToggle.checked = false;
-      });
-    } catch (err) {
-      awakeStatus.textContent = 'Wake lock failed: ' + err.message;
-      keepAwakeToggle.checked = false;
-    }
-  }
-  async function releaseWakeLock() {
-    try {
-      if (wakeLock) { await wakeLock.release(); wakeLock = null; }
-      awakeStatus.textContent = 'Screen may sleep normally.';
-    } catch (err) {
-      awakeStatus.textContent = 'Error releasing wake lock: ' + err.message;
-    }
-  }
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && keepAwakeToggle.checked) {
-      requestWakeLock();
-    }
-  });
-  keepAwakeToggle.addEventListener('change', async e => {
-    if ('wakeLock' in navigator) {
-      e.target.checked ? await requestWakeLock() : await releaseWakeLock();
-    } else {
-      awakeStatus.textContent = 'Wake Lock API not supported on this browser.';
-      e.target.checked = false;
-    }
-  });
-
-  // UI wiring
-  minutesInput.addEventListener('change', () => {
-    const wasRunning = ticking;
-    pause();
-    setTotalSeconds();
-    if (wasRunning) start();
-  });
-  startPauseBtn.addEventListener('click', () => ticking ? pause() : start());
-  resetBtn.addEventListener('click', () => { pause(); setTotalSeconds(); });
-  testSoundBtn.addEventListener('click', () => ding());
-
-  setTotalSeconds();
-})();
+// ... existing code ...
 </script>
 </body>
-</html>
+</html> 

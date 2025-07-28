@@ -126,20 +126,25 @@
       await ding();
       if (navigator.vibrate) navigator.vibrate([120,60,120]);
       setTotalSeconds();
-      start(); // restart for looping
+      _startLoop(); // always restart the timer loop
       return;
     }
     timerTimeout = setTimeout(tick, 250);
   }
 
-  function start() {
-    if (ticking) return;
+  function _startLoop() {
+    // Internal restart: always start, regardless of ticking state
     const now = Date.now();
     endTime = now + remaining * 1000;
     ticking = true;
     startPauseBtn.textContent = '⏸️ Pause';
     status.textContent = 'Running…';
     tick();
+  }
+
+  function start() {
+    if (ticking) return;
+    _startLoop();
   }
 
   function pause() {

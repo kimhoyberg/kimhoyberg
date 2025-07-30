@@ -78,27 +78,40 @@
 
   // --- LOUDER / HIGHER SOUND ---
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  
+  // Safari detection
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  
   async function ding() {
-    // Resume AudioContext if suspended (Safari/iOS)
-    if (audioCtx.state === 'suspended') {
-      await audioCtx.resume();
+    try {
+      // Resume AudioContext if suspended (Safari/iOS)
+      if (audioCtx.state === 'suspended') {
+        await audioCtx.resume();
+        // Safari needs a moment after resume
+        if (isSafari) {
+          await new Promise(resolve => setTimeout(resolve, 50));
+        }
+      }
+      
+      const now = audioCtx.currentTime;
+      const masterGain = audioCtx.createGain();
+      masterGain.gain.setValueAtTime(0.35, now);
+      masterGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.8);
+
+      const freqs = [1046.5, 1318.5, 1568.0]; // C6, E6, G6
+      freqs.forEach(f => {
+        const osc = audioCtx.createOscillator();
+        osc.type = 'square';
+        osc.frequency.value = f;
+        osc.connect(masterGain);
+        osc.start(now);
+        osc.stop(now + 0.4);
+      });
+
+      masterGain.connect(audioCtx.destination);
+    } catch (error) {
+      console.error('Audio error:', error);
     }
-    const now = audioCtx.currentTime;
-    const masterGain = audioCtx.createGain();
-    masterGain.gain.setValueAtTime(0.35, now);
-    masterGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.8);
-
-    const freqs = [1046.5, 1318.5, 1568.0]; // C6, E6, G6
-    freqs.forEach(f => {
-      const osc = audioCtx.createOscillator();
-      osc.type = 'square';
-      osc.frequency.value = f;
-      osc.connect(masterGain);
-      osc.start(now);
-      osc.stop(now + 0.4);
-    });
-
-    masterGain.connect(audioCtx.destination);
   }
 
   function updateDisplay() {
@@ -116,21 +129,34 @@
     endTime = null;
   }
 
-  async function timerLoop() {
-    while (ticking) {
-      const now = Date.now();
-      remaining = Math.max(0, Math.round((endTime - now) / 1000));
-      updateDisplay();
-      if (remaining <= 0) {
-        await ding();
+  function timerLoop() {
+    if (!ticking) return;
+    
+    const now = Date.now();
+    remaining = Math.max(0, Math.round((endTime - now) / 1000));
+    updateDisplay();
+    
+    if (remaining <= 0) {
+      // Handle timer completion
+      ticking = false;
+      
+      // Play sound and vibrate
+      ding().then(() => {
         if (navigator.vibrate) navigator.vibrate([120,60,120]);
+        
+        // Reset timer
         setTotalSeconds();
-        // Reset the timer for the next loop - setTotalSeconds already set remaining to totalSecs
         endTime = Date.now() + totalSecs * 1000;
-        // Continue the loop (don't return)
-      } else {
-        await new Promise(res => setTimeout(res, 250));
-      }
+        
+        // Restart timer after a short delay (Safari needs this)
+        setTimeout(() => {
+          ticking = true;
+          timerLoop();
+        }, isSafari ? 100 : 50);
+      });
+    } else {
+      // Continue timer
+      setTimeout(timerLoop, 250);
     }
   }
 

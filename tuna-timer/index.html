@@ -122,15 +122,15 @@
       remaining = Math.max(0, Math.round((endTime - now) / 1000));
       updateDisplay();
       if (remaining <= 0) {
-        ticking = false;
         await ding();
         if (navigator.vibrate) navigator.vibrate([120,60,120]);
         setTotalSeconds();
-        // Always restart the timer loop after beep and reset
-        start();
-        return;
+        // Reset the timer for the next loop
+        endTime = Date.now() + remaining * 1000;
+        // Continue the loop (don't return)
+      } else {
+        await new Promise(res => setTimeout(res, 250));
       }
-      await new Promise(res => setTimeout(res, 250));
     }
   }
 

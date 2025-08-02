@@ -77,10 +77,8 @@
   let timerLoopPromise = null;
 
   // --- LOUDER / HIGHER SOUND ---
-  // Safari-compatible audio using HTML5 Audio instead of Web Audio API
-  const audio = new Audio();
-  audio.src = 'data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmGgU7k9n1unEiBC13yO/eizEIHWq+8+OWT';
-  audio.volume = 0.7;
+  // Safari-compatible audio using Web Audio API with fallback
+  let audioCtx = null;
   
   // Safari detection
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -89,37 +87,55 @@
   let audioInitialized = false;
   
   function initializeAudio() {
-    if (!audioInitialized && isSafari) {
-      audio.play().then(() => {
-        audio.pause();
-        audio.currentTime = 0;
+    if (!audioInitialized) {
+      try {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         audioInitialized = true;
-      }).catch(error => {
-        console.error('Audio initialization failed:', error);
-      });
+      } catch (error) {
+        console.error('Audio context creation failed:', error);
+      }
     }
   }
   
   function ding() {
     try {
-      // For Safari, we need to reset the audio before playing
-      if (isSafari) {
-        audio.currentTime = 0;
+      if (!audioCtx) {
+        console.error('Audio context not initialized');
+        return;
       }
       
-      // Try to play audio
-      const playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.error('Audio play failed:', error);
-          // For Safari, try to reinitialize audio
-          if (isSafari && !audioInitialized) {
-            initializeAudio();
-          }
+      // Resume AudioContext if suspended (Safari/iOS)
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume().then(() => {
+          playBeep();
+        }).catch(error => {
+          console.error('Audio resume failed:', error);
         });
+      } else {
+        playBeep();
       }
     } catch (error) {
       console.error('Audio error:', error);
+    }
+  }
+  
+  function playBeep() {
+    try {
+      const now = audioCtx.currentTime;
+      const masterGain = audioCtx.createGain();
+      masterGain.gain.setValueAtTime(0.3, now);
+      masterGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+
+      const osc = audioCtx.createOscillator();
+      osc.type = 'square';
+      osc.frequency.value = 800; // Simple beep frequency
+      osc.connect(masterGain);
+      osc.start(now);
+      osc.stop(now + 0.3);
+
+      masterGain.connect(audioCtx.destination);
+    } catch (error) {
+      console.error('Beep play failed:', error);
     }
   }
 

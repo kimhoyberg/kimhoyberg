@@ -25,7 +25,7 @@
     Professional <a href="https://thewayofcode.com" class="vibe-link" target="_blank">vibe coder</a> and AI consultant, specialized in helping small businesses save time and streamline their everyday work. 
   </p>
   <p>
-    <a href="mailto:hey@kimhoyberg.com" class="reach-out-btn">Reach out</a>
+    <a href="mailto:hey@kimhoyberg.com">Email</a>
   </p>
 
   <!-- Projects -->
@@ -38,4 +38,4 @@
   </section>
 </main>
 </body>
-</html> 
+</html>

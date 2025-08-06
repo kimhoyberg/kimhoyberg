@@ -133,6 +133,23 @@ ul.project-list li{
   text-decoration: underline;
 }
 
+/* Reach out button */
+.reach-out-btn {
+  display: inline-block;
+  background: #000000;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.reach-out-btn:hover {
+  background: #333333;
+  text-decoration: none;
+}
+
 /* Adjust body padding to account for fixed nav */
 body {
   padding-top: 120px;

@@ -6,11 +6,12 @@
 <title>Kim Hoyberg</title>
 
 <link rel="stylesheet" href="shared.css">
+<script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
 /* Bitcoin Quote styles */
 #bitcoin-quote h2 {
-  border-bottom: 3px solid #f7931a;
+  border-bottom: 2px solid #f7931a;
   padding-bottom: 12px;
 }
 
@@ -57,8 +58,8 @@
 #turn-timer label{margin-bottom:6px;}
 #timeDisplay{font-size:3rem;font-weight:600;margin:0.75rem 0}
 .controls{display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:flex-start;margin-bottom:8px;}
-button{font-size:1rem;padding:0.4rem 0.8rem;border:1px solid #cccccc;border-radius:16px;background:#fff;cursor:pointer}
-input[type="number"]{font-size:1rem;padding:0.4rem 0.8rem;border:1px solid #cccccc;border-radius:16px;background:#fff;cursor:pointer}
+button{font-size:0.9rem;font-weight:500;padding:0.4rem 0.8rem;border:1px solid #cccccc;border-radius:16px;background:#fff;cursor:pointer}
+input[type="number"]{font-size:0.9rem;font-weight:500;padding:0.4rem 0.8rem;border:1px solid #cccccc;border-radius:16px;background:#fff;cursor:pointer}
 button:hover{background:var(--timer-accent)}
 label{display:flex;align-items:center;gap:0.4rem;}
 .left-align{justify-content:flex-start; text-align:left;}
@@ -70,7 +71,7 @@ label{display:flex;align-items:center;gap:0.4rem;}
 <main>
   <!-- Hero -->
   <img src="pfp-ghibli.png" alt="Illustrated portrait of me" class="portrait" />
-  <h1>Kim Hoyberg</h1>
+  <h1>Hey, I'm Kim</h1>
   <p>
     <a href="https://thewayofcode.com" class="vibe-link" target="_blank">Vibe coding</a> creative solutions to everyday problems.<br>Have an idea? Let's get to work.
   </p>
@@ -79,19 +80,19 @@ label{display:flex;align-items:center;gap:0.4rem;}
   </p>
 
   <!-- Bitcoin Quote -->
-  <section id="bitcoin-quote" style="margin-top:48px;">
-    <h2><span class="btc-symbol">₿</span> Bitcoin Quote of the Day</h2>
+  <section id="bitcoin-quote" style="margin-top:60px;">
+    <h2><i data-lucide="bitcoin" style="width:18px;height:18px;color:#f7931a;vertical-align:middle;margin-right:4px;stroke-width:2.5;"></i> Statement of the Day</h2>
     <p class="quote-text" id="quote-text">Loading...</p>
     <p class="quote-author" id="quote-author">Bitcoin</p>
     <div class="quote-nav">
-      <button id="prev-quote" aria-label="Previous quote">←</button>
-      <button id="next-quote" aria-label="Next quote">→</button>
+      <button id="prev-quote" aria-label="Previous quote"><i data-lucide="chevron-left" style="width:16px;height:16px;"></i></button>
+      <button id="next-quote" aria-label="Next quote"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></button>
     </div>
   </section>
 
   <!-- Turn-Timer -->
   <section id="turn-timer" style="margin-top:48px;">
-    <h2>🐟 Tuna-Timer</h2>
+    <h2><i data-lucide="fish" style="width:16px;height:16px;color:#1a85f7;vertical-align:middle;margin-right:4px;"></i> Tuna-Timer</h2>
     <p>A simple turn timer looping automatically when time runs out, perfect for games and activities.</p>
     <label>
       Minutes per turn:
@@ -99,9 +100,9 @@ label{display:flex;align-items:center;gap:0.4rem;}
     </label>
     <div id="timeDisplay">10:00</div>
     <div class="controls">
-      <button id="startPauseBtn">▶️ Start</button>
-      <button id="resetBtn">⏹️ Reset</button>
-      <button id="testSoundBtn">🔊 Test Sound</button>
+      <button id="startPauseBtn"><i data-lucide="play" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Start</button>
+      <button id="resetBtn"><i data-lucide="rotate-ccw" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Reset</button>
+      <button id="testSoundBtn"><i data-lucide="volume-2" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Test Sound</button>
     </div>
     <label class="left-align">
       <input id="keepAwakeToggle" type="checkbox">
@@ -290,7 +291,8 @@ label{display:flex;align-items:center;gap:0.4rem;}
     const now = Date.now();
     endTime = now + remaining * 1000;
     ticking = true;
-    startPauseBtn.textContent = '⏸️ Pause';
+    startPauseBtn.innerHTML = '<i data-lucide="pause" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Pause';
+    lucide.createIcons();
     status.textContent = 'Running…';
     startTimer();
   }
@@ -304,7 +306,8 @@ label{display:flex;align-items:center;gap:0.4rem;}
     if (endTime) {
       remaining = Math.max(0, Math.round((endTime - Date.now()) / 1000));
     }
-    startPauseBtn.textContent = '▶️ Start';
+    startPauseBtn.innerHTML = '<i data-lucide="play" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i> Start';
+    lucide.createIcons();
     status.textContent = 'Paused';
   }
 
@@ -368,6 +371,9 @@ label{display:flex;align-items:center;gap:0.4rem;}
 
   setTotalSeconds();
 })();
+
+// Initialize Lucide icons
+lucide.createIcons();
 </script>
 </body>
 </html> 

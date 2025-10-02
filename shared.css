@@ -30,6 +30,7 @@ body{
   align-items:flex-start;     /* top align vertically */
   justify-content:center;     /* center horizontally */
   padding:48px;
+  margin-top: 48px;
 }
 main{
   max-width:var(--maxw);
@@ -37,8 +38,8 @@ main{
   text-align:left;
 }
 img.portrait{
-  width:60px;
-  height:60px;
+  width:48px;
+  height:48px;
   border-radius:100px;
   object-fit:cover;
   margin-bottom:30px;
@@ -49,6 +50,7 @@ h1{
   line-height:1.0;
   font-weight:600;
   margin:0 0 12px;
+  letter-spacing: -0.02em 
 }
 h2{
   font-size:1rem;
@@ -97,41 +99,6 @@ ul.project-list{
   padding:0;
   margin:0;
 }
-ul.project-list li{
-  margin-bottom:16px;
-}
-
-/* Navigation */
-.nav-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: var(--bg);
-  padding: 48px 48px 0 48px;
-  z-index: 100;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.nav-container {
-  max-width: var(--maxw);
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.nav-link {
-  color: var(--fg);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.9rem;
-}
-
-.nav-link:hover {
-  text-decoration: underline;
-}
 
 /* Reach out button */
 .reach-out-btn {
@@ -141,7 +108,8 @@ ul.project-list li{
   padding: 0.4rem 0.8rem;
   border-radius: 16px;
   text-decoration: none;
-  font-weight: 500;
+  font-size: 0.9rem;
+  font-weight: 400;
   transition: background-color 0.2s ease;
 }
 
@@ -162,8 +130,5 @@ ul.project-list li{
   .controls {
     justify-content: flex-start !important;
   }
- 
-  body {
-    padding-top: 80px;
-  }
+
 }

@@ -30,7 +30,6 @@
 
   <!-- Projects -->
   <section id="projects">
-    <h2>Projects</h2>
     <ul class="project-list">
       <li><a href="/tuna-timer/">Tuna-Timer</a><br>A looping turn timer with a fishy vibe for kids.</li>
       <!-- Add more projects here -->

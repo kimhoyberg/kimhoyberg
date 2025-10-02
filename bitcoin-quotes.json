@@ -1,0 +1,197 @@
+[
+  {
+    "text": "If you don't believe it or don't get it, I don't have the time to try to convince you, sorry.",
+    "author": "Satoshi Nakamoto",
+    "type": "quote"
+  },
+  {
+    "text": "The root problem with conventional currency is all the trust that's required to make it work.",
+    "author": "Satoshi Nakamoto",
+    "type": "quote"
+  },
+  {
+    "text": "Bitcoin is a remarkable cryptographic achievement and the ability to create something that is not duplicable in the digital world has enormous value.",
+    "author": "Eric Schmidt",
+    "type": "quote"
+  },
+  {
+    "text": "I do think Bitcoin is the first encrypted money that has the potential to do something like change the world.",
+    "author": "Peter Thiel",
+    "type": "quote"
+  },
+  {
+    "text": "Bitcoin is a technological tour de force.",
+    "author": "Bill Gates",
+    "type": "quote"
+  },
+  {
+    "text": "Every informed person needs to know about Bitcoin because it might be one of the world's most important developments.",
+    "author": "Leon Luow",
+    "type": "quote"
+  },
+  {
+    "text": "Bitcoin will do to banks what email did to the postal industry.",
+    "author": "Rick Falkvinge",
+    "type": "quote"
+  },
+  {
+    "text": "I think the internet is going to be one of the major forces for reducing the role of government. The one thing that's missing but that will soon be developed, is a reliable e-cash.",
+    "author": "Milton Friedman",
+    "type": "quote"
+  },
+  {
+    "text": "Bitcoin is the beginning of something great: a currency without a government, something necessary and imperative.",
+    "author": "Nassim Taleb",
+    "type": "quote"
+  },
+  {
+    "text": "Bitcoin is absolutely the Wild West of finance, and thank goodness. It represents a whole legion of adventurers and entrepreneurs.",
+    "author": "Adam Draper",
+    "type": "quote"
+  },
+  {
+    "text": "Bitcoin is the most important invention in the history of the world since the internet.",
+    "author": "Roger Ver",
+    "type": "quote"
+  },
+  {
+    "text": "I am very intrigued by Bitcoin. It has all the signs. Paradigm shift, hackers love it, yet it's derided as a toy.",
+    "author": "Paul Graham",
+    "type": "quote"
+  },
+  {
+    "text": "Bitcoin is a very exciting development, it might lead to a world currency. I think over the next decade it will grow to become one of the most important ways to pay for things and transfer assets.",
+    "author": "Kim Dotcom",
+    "type": "quote"
+  },
+  {
+    "text": "Virgin Galactic is a bold entrepreneurial technology. It's driving a revolution and Bitcoin is doing just the same when it comes to inventing a new currency.",
+    "author": "Richard Branson",
+    "type": "quote"
+  },
+  {
+    "text": "Bitcoin is the beginning of something great: a currency without a government.",
+    "author": "Naval Ravikant",
+    "type": "quote"
+  },
+  {
+    "text": "Bitcoin gives us, for the first time, a way for one Internet user to transfer a unique piece of digital property to another Internet user.",
+    "author": "Marc Andreessen",
+    "type": "quote"
+  },
+  {
+    "text": "Bitcoin is a swarm of cyber hornets serving the goddess of wisdom, feeding on the fire of truth.",
+    "author": "Michael Saylor",
+    "type": "quote"
+  },
+  {
+    "text": "Bitcoin is the apex property of the human race.",
+    "author": "Michael Saylor",
+    "type": "quote"
+  },
+  {
+    "text": "Hal Finney received the first Bitcoin transaction, 10 BTC from Satoshi Nakamoto on January 12, 2009.",
+    "author": "Historical Milestone",
+    "type": "fact"
+  },
+  {
+    "text": "The Bitcoin whitepaper was published on October 31, 2008, introducing the world to decentralized digital currency.",
+    "author": "Historical Milestone",
+    "type": "fact"
+  },
+  {
+    "text": "Bitcoin's genesis block was mined on January 3, 2009, containing the message: 'The Times 03/Jan/2009 Chancellor on brink of second bailout for banks.'",
+    "author": "Historical Milestone",
+    "type": "fact"
+  },
+  {
+    "text": "Bitcoin Pizza Day: May 22, 2010, when 10,000 BTC was used to purchase two pizzas, marking the first real-world transaction.",
+    "author": "Historical Milestone",
+    "type": "fact"
+  },
+  {
+    "text": "Bitcoin's maximum supply is capped at 21 million coins, making it the first truly scarce digital asset.",
+    "author": "Technical Fact",
+    "type": "fact"
+  },
+  {
+    "text": "A Bitcoin halving occurs approximately every 4 years, reducing the block reward by 50% and decreasing inflation.",
+    "author": "Technical Fact",
+    "type": "fact"
+  },
+  {
+    "text": "Bitcoin operates on a peer-to-peer network with no central authority or middleman required for transactions.",
+    "author": "Technical Fact",
+    "type": "fact"
+  },
+  {
+    "text": "The Bitcoin network processes over $10 billion in transactions daily, operating 24/7 without downtime.",
+    "author": "Network Stat",
+    "type": "fact"
+  },
+  {
+    "text": "Bitcoin's proof-of-work mining secures the network, making it the most computationally secure system ever created.",
+    "author": "Technical Fact",
+    "type": "fact"
+  },
+  {
+    "text": "El Salvador became the first country to adopt Bitcoin as legal tender on September 7, 2021.",
+    "author": "Historical Milestone",
+    "type": "fact"
+  },
+  {
+    "text": "Satoshi Nakamoto's identity remains unknown, and their estimated 1 million BTC has never been moved.",
+    "author": "Mystery",
+    "type": "fact"
+  },
+  {
+    "text": "Bitcoin's Lightning Network enables instant, low-cost transactions, processing millions of transactions per second.",
+    "author": "Technical Fact",
+    "type": "fact"
+  },
+  {
+    "text": "The smallest unit of Bitcoin is a 'satoshi' (0.00000001 BTC), named after Bitcoin's creator.",
+    "author": "Technical Fact",
+    "type": "fact"
+  },
+  {
+    "text": "Bitcoin reached $1 for the first time in February 2011, and hit $69,000 in November 2021.",
+    "author": "Historical Milestone",
+    "type": "fact"
+  },
+  {
+    "text": "Running for a little over 100 years old seems like a good bet.",
+    "author": "Hal Finney (2009)",
+    "type": "quote"
+  },
+  {
+    "text": "Bitcoin is one of the most important inventions in all of human history.",
+    "author": "Jack Dorsey",
+    "type": "quote"
+  },
+  {
+    "text": "The governments of the world are going to fight Bitcoin. They won't win.",
+    "author": "Max Keiser",
+    "type": "quote"
+  },
+  {
+    "text": "I think Bitcoin is going to change the way that everything works. I want entrepreneurs to tell me how its going to change.",
+    "author": "Adam Draper",
+    "type": "quote"
+  },
+  {
+    "text": "Bitcoin is the currency of resistance.",
+    "author": "Max Keiser",
+    "type": "quote"
+  },
+  {
+    "text": "We have elected to put our money and faith in a mathematical framework that is free of politics and human error.",
+    "author": "Tyler Winklevoss",
+    "type": "quote"
+  },
+  {
+    "text": "Bitcoin is the exit strategy from the central banking system.",
+    "author": "Alex Gladstein",
+    "type": "quote"
+  }
+]

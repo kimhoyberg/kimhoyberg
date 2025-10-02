@@ -8,6 +8,48 @@
 <link rel="stylesheet" href="shared.css">
 
 <style>
+/* Bitcoin Quote styles */
+#bitcoin-quote h2 {
+  border-bottom: 3px solid #f7931a;
+  padding-bottom: 12px;
+}
+
+#bitcoin-quote .quote-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin: 12px 0 12px 0;
+  font-style: italic;
+}
+
+#bitcoin-quote .quote-author {
+  font-size: 0.85rem;
+  color: #666666;
+  font-weight: 500;
+  margin: 0 0 12px 0;
+}
+
+#bitcoin-quote .quote-nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+#bitcoin-quote .quote-nav button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  color: #666666;
+  transition: color 0.2s ease;
+}
+
+#bitcoin-quote .quote-nav button:hover {
+  color: #f7931a;
+}
+
 /* Turn-Timer styles */
 :root { --timer-accent: #ececec; }
 #turn-timer h3{margin-bottom:6px;}
@@ -30,16 +72,27 @@ label{display:flex;align-items:center;gap:0.4rem;}
   <img src="pfp-ghibli.png" alt="Illustrated portrait of me" class="portrait" />
   <h1>Kim Hoyberg</h1>
   <p>
-    <a href="https://thewayofcode.com" class="vibe-link" target="_blank">Vibe coding</a> solutions to everyday problems.
+    <a href="https://thewayofcode.com" class="vibe-link" target="_blank">Vibe coding</a> creative solutions to everyday problems.<br>Have an idea? Let's get to work.
   </p>
   <p>
-    <a href="mailto:kim@kpeconsult.dk" class="reach-out-btn">Reach out</a>
+    <a href="mailto:hey@kimhoyberg.com" class="reach-out-btn">Reach out</a>
   </p>
+
+  <!-- Bitcoin Quote -->
+  <section id="bitcoin-quote" style="margin-top:48px;">
+    <h2><span class="btc-symbol">₿</span> Bitcoin Quote of the Day</h2>
+    <p class="quote-text" id="quote-text">Loading...</p>
+    <p class="quote-author" id="quote-author">Bitcoin</p>
+    <div class="quote-nav">
+      <button id="prev-quote" aria-label="Previous quote">←</button>
+      <button id="next-quote" aria-label="Next quote">→</button>
+    </div>
+  </section>
 
   <!-- Turn-Timer -->
   <section id="turn-timer" style="margin-top:48px;">
     <h2>🐟 Tuna-Timer</h2>
-    <p>A simple turn timer that loops automatically when time runs out, perfect for games and activities.</p>
+    <p>A simple turn timer looping automatically when time runs out, perfect for games and activities.</p>
     <label>
       Minutes per turn:
       <input id="minutesInput" type="number" min="1" value="10" />
@@ -59,6 +112,45 @@ label{display:flex;align-items:center;gap:0.4rem;}
   </section>
 </main>
 <script>
+// Bitcoin Quote Loader
+(async () => {
+  let quotes = [];
+  let currentIndex = 0;
+
+  function displayQuote(index) {
+    const quote = quotes[index];
+    document.getElementById('quote-text').textContent = quote.text;
+    document.getElementById('quote-author').textContent = quote.author;
+  }
+
+  function nextQuote() {
+    currentIndex = (currentIndex + 1) % quotes.length;
+    displayQuote(currentIndex);
+  }
+
+  function prevQuote() {
+    currentIndex = (currentIndex - 1 + quotes.length) % quotes.length;
+    displayQuote(currentIndex);
+  }
+
+  try {
+    // Add cache-busting parameter to ensure fresh load
+    const response = await fetch(`bitcoin-quotes.json?v=${Date.now()}`);
+    quotes = await response.json();
+    currentIndex = Math.floor(Math.random() * quotes.length);
+    displayQuote(currentIndex);
+
+    // Add event listeners to navigation buttons
+    document.getElementById('prev-quote').addEventListener('click', prevQuote);
+    document.getElementById('next-quote').addEventListener('click', nextQuote);
+  } catch (error) {
+    console.error('Error loading Bitcoin quotes:', error);
+    document.getElementById('quote-text').textContent = 'Bitcoin is a remarkable cryptographic achievement.';
+    document.getElementById('quote-author').textContent = 'Anonymous';
+  }
+})();
+
+// Turn-Timer Script
 (() => {
   const minutesInput   = document.getElementById('minutesInput');
   const timeDisplay    = document.getElementById('timeDisplay');

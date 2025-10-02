@@ -56,6 +56,9 @@ h2{
   font-weight:600;
   margin:0 0 12px;
 }
+h2 .btc-symbol {
+  color: #f7931a;
+}
 p, li, label {
   font-size:0.9rem;
   line-height:1.5;
